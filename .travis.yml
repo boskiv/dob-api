@@ -1,0 +1,16 @@
+language: go
+
+env:
+  - GO_ENV=test
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database dob_api_test;' -U postgres
+  - go get github.com/gobuffalo/buffalo/buffalo
+
+go_import_path: github.com/boskiv/dob_api
+
+script: 
+  - buffalo test
